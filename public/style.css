@@ -10,15 +10,36 @@ nav{
 	color: white;
 	font-size: 35px;
 }
+li{
+  list-style-type: none;
+}
+
 #wrapper{
 	background: url("https://cdn.glitch.com/d3f7c512-e80f-4797-b96d-dbdd30012294%2Fnightlife.jpeg?1510192124481")no-repeat;
   width: 100%;
 	height: 100vh;
   background-size: cover;
-  position: fixed;
 }
 #photoGallery{
 	width: 100%;
+}
+.imgs{
+	width: 150px;
+}
+.box{
+  border-radius: 5px;
+	border: 1px solid black;
+	margin-top: 2%;
+	padding: 20px;
+	background-color: white;
+}
+.box:hover{
+  border-radius: 5px;
+	border: 1px solid black;
+	margin-top: 2%;
+	padding: 30px;
+	background-color: #bcd6ff;
+   box-shadow: 10px 10px 5px black;
 }
 .title{
 font-family: 'Radley', sans-serif;

@@ -7,7 +7,7 @@
   "description": "What am I about?",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+ "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.16.2",
@@ -15,7 +15,9 @@
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "localStorage": "^1.0.3",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "request": "^2.83.0",
+    "node-yelp-fusion": "^1.0.4"
   },
   "engines": {
     "node": "8.x"
