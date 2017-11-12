@@ -1,0 +1,2 @@
+Going just added.. Will add functionality for Not Going
+Add going count with list of users going displayed on component

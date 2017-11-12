@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser())
 
+
 app.get("/", function(req,res){
 	res.sendFile(__dirname+"/views/index.html")
 })
@@ -77,12 +78,31 @@ app.post("/login", function(req,res){
   
   db.authenticateUser(dataObject, function(err,test, result){
     if(test){
-      res.send("Success")
+      console.log(result)
+      res.cookie("uName", result.user)
+      res.redirect("/")
     }
     else if(!test){
       res.send("Invalid Credentials")
     }
   })
+})
+//logout
+app.get("/logout", function(req,res){
+  res.clearCookie("uName")
+  res.redirect("/")
+})
+
+//going event handling... adds a place
+app.post("/addPlace", function(req,res){
+  var dataObject = {
+    user: req.cookies.uName,
+    place: req.body.place
+  }
+  db.addPlace(dataObject, function(){
+      res.redirect("/")
+  })
+
 })
 app.listen(3000,function(req,res){
 	console.log("Listening on port 3000...")
