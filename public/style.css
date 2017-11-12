@@ -23,6 +23,12 @@ li{
 #photoGallery{
 	width: 100%;
 }
+.uName{
+  color: white;
+  font-family: 'Lobster', cursive;
+  font-size: 35px;
+  margin-left: 5%;
+}
 .goingBtn{
 border-radius: 10px;
 width: 100%;
@@ -84,6 +90,9 @@ font-family: 'Radley', sans-serif;
  	color: white;
  	background-color: #494b4f;
  }
+.subBut:focus{
+  outline: none;
+}
 @media only screen and (max-device-width: 480px) {
   #wrapper{
   background: url("https://cdn.glitch.com/d3f7c512-e80f-4797-b96d-dbdd30012294%2Fphoto2.jpeg?1510192139600")no-repeat;

@@ -47,6 +47,20 @@
     	//Parse Cookies Start
     var w;
     var alp = document.cookie.split(";")
+    
+    //User Parse 
+    var user = "";
+     for(var i=0; i<alp.length; i++){
+        var z = alp[i].split("=");     
+        if(alp[i].split("=")[0] == "uName" || alp[i].split("=")[0] == " uName"){
+         
+          w = i;
+        }
+    }
+    if(w>=0){
+    var a = alp[w].split("=");
+     user = a[1] 
+    }
       //Location Parse
 		for(var i=0; i< alp.length; i++){
         var z = alp[i].split("=");     
@@ -129,10 +143,13 @@
     render: function(){
 	return(
 	    <div>
+      <form method = "POST" action = "/addPlace">
     	<h1>{this.props.ident}</h1>
+      <input type="hidden" name = "place" value = {this.props.eyedee}/>
     	<img className ="imgs" src = {this.props.image}/>
       <br/><br/>
       <button className = "goingBtn" value = {this.props.eyedee}>Going</button>
+      </form>
     </div>
   	)}
 });
@@ -150,14 +167,30 @@
   login: false
   }
 },
+  credentialsButton: function(){
+
+  if(user.length === 0){
+      return(<button onClick = {()=>{return this.setState({login: true, home: false})}} className = "subBut">
+      Login
+      </button>)
+  }
+  else if (user.length>0){
+      return(<a href ="/logout"><button className = "subBut">
+      Logout
+      </button></a>)
+  }
+  
+  },
   home: function(){
   	return(
 	<div>
-    <center>
+
     <br/>
-    <button onClick = {()=>{return this.setState({login: true, home: false})}} className = "subBut">
-      Login
-      </button>
+    <span className = "uName">
+    {user}
+    </span>
+        <center>
+        {this.credentialsButton()}
      <button onClick = {()=>{return this.setState({register: true, home: false})}} className = "subBut">
       Register
       </button>

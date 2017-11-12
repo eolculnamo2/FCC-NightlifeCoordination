@@ -31,6 +31,22 @@ module.exports={
          }
         })
      })
-    
-  }
+   },
+  
+    addPlace: function(info, callback){
+      mongo.MongoClient.connect(url, function(err,db){
+        db.collection('nightLife').findOne({user: info.user, places: info.place}, function(err,result){
+          if(result){
+            callback()
+          }
+          else if(!result){
+         db.collection('nightLife').update({user: info.user},
+                                         {$push: {places: info.place }})
+        callback()
+          }
+        })
+
+      })
+    }
+                                 
 }
