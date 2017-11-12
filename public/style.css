@@ -23,15 +23,31 @@ li{
 #photoGallery{
 	width: 100%;
 }
+.goingBtn{
+border-radius: 10px;
+width: 100%;
+padding: 5px;
+background-color: #ffc37a;
+border: 2px solid #0e0528;
+color: white;
+  
+}
 .imgs{
 	width: 150px;
 }
+.registerPage{
+  height: 100vh;
+  color: white;
+}
 .box{
+  opacity: .8;
   border-radius: 5px;
 	border: 1px solid black;
 	margin-top: 2%;
 	padding: 20px;
 	background-color: white;
+  font-size: 25px;
+  font-family: 'Lobster', cursive;
 }
 .box:hover{
   border-radius: 5px;
@@ -47,7 +63,7 @@ font-family: 'Radley', sans-serif;
 	font-size: 125px;
 }
 .subtitle{
-	margin-top: 15%;
+	margin-top: 20%;
 	color: white;
 }
 .citySearch{
@@ -55,6 +71,7 @@ font-family: 'Radley', sans-serif;
 	border-radius: 20px;
 	padding: 10px;
 	width: 50%;
+  color: black;
 }
 .citySearch:focus {
     outline:none;
@@ -73,7 +90,6 @@ font-family: 'Radley', sans-serif;
   width: 100%;
 	height: 100vh;
   background-size: cover;
-  position: fixed;
   }
   .subtitle{
     margin-top:90%;
