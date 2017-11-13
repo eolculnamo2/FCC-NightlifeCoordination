@@ -107,8 +107,10 @@ app.post("/login", function(req,res){
 info.forEach((x,i)=>{
   
   db.gatherGoing(x, function(g){
-     going.push(g) 
-     if(i === info.length-1){
+    //used splice instead of push to get around async problem of wrong order
+     //going.push(g) 
+    going.splice(i,0,g) 
+    if(i === info.length-1){
        console.log(going+going.length)
        res.cookie("going",going)
      
@@ -138,7 +140,27 @@ app.post("/addPlace", function(req,res){
     place: req.body.place
   }
   db.addPlace(dataObject, function(){
-      res.redirect("/")
+            //gathers info for going. Also used in when hit search button    
+      var info = req.cookies.eyedees
+      var going = [];
+info.forEach((x,i)=>{
+  
+  db.gatherGoing(x, function(g){
+    //used splice instead of push to get around async problem of wrong order
+     //going.push(g) 
+    going.splice(i,0,g) 
+    if(i === info.length-1){
+       console.log(going+going.length)
+       res.cookie("going",going)
+     
+       res.redirect("/")
+     }
+  })
+  
+})
+     
+    
+    //  res.redirect("/")
   })
 
 })
