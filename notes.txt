@@ -1,2 +1,4 @@
-Going just added.. Will add functionality for Not Going
+Components will both list and count those going.
+===>Sync problem causing arrays to be out of order or missing\
 Add going count with list of users going displayed on component
+Will want TTL  for mongo places to reset at 3 am 
