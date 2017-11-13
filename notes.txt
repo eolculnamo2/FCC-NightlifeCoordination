@@ -1,4 +1,5 @@
-Components will both list and count those going.
+1)Components will both list and count those going.
 ===>Sync problem causing arrays to be out of order or missing\
-Add going count with list of users going displayed on component
-Will want TTL  for mongo places to reset at 3 am 
+2)Add going count with list of users going displayed on component
+3)Auto-update after click "going"
+4)Will want TTL  for mongo places to reset at 3 am 

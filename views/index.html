@@ -178,11 +178,15 @@
     var go = [];
     if(this.props.goers !== undefined){
      go = this.props.goers.split(",")
+       if(go[0] < 1){
+       go = [];
+       }
     }
 
 	return(
 	    <div>
-      <form method = "POST" action = "/addPlace">
+      <center>
+      <form method = "POST" action = "/addPlace"> 
     	<h1>{this.props.ident}</h1>
       <input type="hidden" name = "place" value = {this.props.eyedee}/>
     	<img className ="imgs" src = {this.props.image}/>
@@ -199,6 +203,7 @@
       <br/><br/>
       <button className = "goingBtn" value = {this.props.eyedee}>Going</button>
       </form>
+      </center>
     </div>
   	)}
 });
