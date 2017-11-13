@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser')
 var db = require("./db/data")
 var app = express();
 var Yelp = require('node-yelp-fusion');
-var yelp=new Yelp({ id:"rGdNsmucbSDO38xCi10UiQ" , secret:"F2eU5bGtTjQm6BhCbaf9zHyGZpmGcikh2H6fUtSnwWp68dYphIaXUTi7YAZafF6I" });
+var yelp=new Yelp({ id: process.env.YELP_USER, secret: process.env.YELP_PASS });
 
 
 
@@ -35,14 +35,36 @@ app.post("/searching", function(req,res){
     		imgArr.push(x.image_url)
         uniqueId.push(x.id)
     	})    	   	  
-            console.log(result.businesses)
+            console.log(sender)
     	  		res.cookie("locs",sender);
     	  		res.cookie("photos",imgArr);
+             res.cookie("going",[])
             res.cookie("eyedees", uniqueId)
-    		res.redirect("/")
+              res.redirect("/")
+     });
+
+    		      /*  //gathers info for going. Also used in when user logs in    
+      var info = req.cookies.eyedees;
+      var going = [];
+   
+info.forEach((x,i)=>{
+  
+  db.gatherGoing(x, function(g){
+    going.push(g)
+//    console.log(req.cookies.going.length)
+     if(i === info.length-1 && going.length === info.length){
+       console.log("GO"+going+going.length)
+       res.cookie("going",going)
+     
+       res.redirect("/")
+     }
+  })
+  
+})
+   */
+
         });
 
-});
 
 //Register New User
 app.post("/register", function(req,res){
@@ -78,9 +100,25 @@ app.post("/login", function(req,res){
   
   db.authenticateUser(dataObject, function(err,test, result){
     if(test){
-      console.log(result)
       res.cookie("uName", result.user)
-      res.redirect("/")
+        //gathers info for going. Also used in when hit search button    
+      var info = req.cookies.eyedees
+      var going = [];
+info.forEach((x,i)=>{
+  
+  db.gatherGoing(x, function(g){
+     going.push(g) 
+     if(i === info.length-1){
+       console.log(going+going.length)
+       res.cookie("going",going)
+     
+       res.redirect("/")
+     }
+  })
+  
+})
+     
+      
     }
     else if(!test){
       res.send("Invalid Credentials")
@@ -104,6 +142,7 @@ app.post("/addPlace", function(req,res){
   })
 
 })
+
 app.listen(3000,function(req,res){
 	console.log("Listening on port 3000...")
 })
