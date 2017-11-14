@@ -29,6 +29,14 @@ li{
   font-size: 35px;
   margin-left: 5%;
 }
+.notGoingBtn{
+border-radius: 10px;
+width: 100%;
+padding: 5px;
+background-color: #f4978b;
+border: 2px solid #0e0528;
+color: white;
+}
 .goingBtn{
 border-radius: 10px;
 width: 100%;

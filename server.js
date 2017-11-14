@@ -157,13 +157,38 @@ info.forEach((x,i)=>{
      }
   })
   
-})
-     
-    
-    //  res.redirect("/")
+})  //  res.redirect("/")
   })
 
 })
+
+    app.post("/removePlace", function(req,res){
+      var dataObject = {
+        user: req.cookies.uName,
+        place: req.body.place
+      }
+      db.removePlace(dataObject, function(){
+              var info = req.cookies.eyedees
+      var going = [];
+info.forEach((x,i)=>{
+  
+  db.gatherGoing(x, function(g){
+    //used splice instead of push to get around async problem of wrong order
+     //going.push(g) 
+    going.splice(i,0,g) 
+    if(i === info.length-1){
+       console.log(going+going.length)
+       res.cookie("going",going)
+     
+       res.redirect("/")
+     }
+  })
+  
+})  
+     
+      })
+    }) 
+    
 
 app.listen(3000,function(req,res){
 	console.log("Listening on port 3000...")

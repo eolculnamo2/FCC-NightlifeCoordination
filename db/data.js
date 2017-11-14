@@ -48,7 +48,14 @@ module.exports={
 
       })
     },
-  
+    removePlace: function(info, callback){
+      mongo.MongoClient.connect(url, function(err,db){
+        db.collection('nightLife').update({user: info.user},
+                                         {$pull: {places: info.place}}, function(){
+             callback()
+        })
+      })
+    },
     gatherGoing: function(cerca, callback){
       mongo.MongoClient.connect(url, function(err,db){
         
